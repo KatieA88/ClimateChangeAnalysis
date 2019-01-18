@@ -8,17 +8,14 @@ from django.db import models
 import requests
 import pandas as pd
 import json
-import csv
-import numpy as np
 import os
 
-#Get Data For London
-
+#Set API and subscription details
 url = 'http://api.planetos.com/v1/search/text?q=temperature&apikey=' + os.environ.get("API_KEY")
 
 # Get Data
 resp = requests.get(url).json()
-print resp
 
-# Create DataFrame
-
+#Create a dataframe
+df = pd.DataFrame.from_dict(resp, orient='index')
+print (df)
